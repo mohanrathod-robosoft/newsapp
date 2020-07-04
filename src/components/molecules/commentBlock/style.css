@@ -1,0 +1,9 @@
+@import '../../_settings/_variables.css';
+
+.commentblock {
+  padding:  10px;
+}
+
+li {
+  list-style-type: none;
+}

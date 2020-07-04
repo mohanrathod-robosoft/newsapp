@@ -3,12 +3,12 @@ import * as React from 'react'
 import classnames from 'classnames'
 import CommentBlock from '../../molecules/commentBlock';
 
-import styles from './style.css'
+import './style.css'
 
 
 const Comment = (props) => (
     
-  <div className={classnames(styles.comment, props.className)}>
+  <div className="comment" >
     <CommentBlock></CommentBlock>
     {props.children}
   </div>
@@ -16,8 +16,7 @@ const Comment = (props) => (
 
 Comment.defaultProps = {
   className: undefined,
-  children: undefined,
-  image: '',
+  children: undefined
 }
 
 export default Comment

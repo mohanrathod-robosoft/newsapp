@@ -1,9 +1,10 @@
 /* @flow */
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import classnames from 'classnames';
+import styles from '../commentBlock/style.css';
 
-import Button from '../../atoms/button'
-import Text from '../../atoms/text'
+import Button from '../../atoms/button';
+import Text from '../../atoms/text';
 import {Fetch} from '../../../util/fetch';
 import {timeConversion} from '../../../util/timeConversion';
 import CommentChilds from '../commentChilds';
@@ -16,7 +17,7 @@ const CommentBlock = (props) => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const qid = "23712676";
+    const qid = "23712627"; // 23712676
     setIsLoading(true);
     const response =  Fetch(`https://hacker-news.firebaseio.com/v0/item/${qid}.json?print=pretty`)
     response
@@ -25,27 +26,13 @@ const CommentBlock = (props) => {
     
     setIsLoading(false);
 
-    // const fetchData = async () => {
-    //   setIsLoading(true);
-    //   const result = await axios(
-    //     `https://hacker-news.firebaseio.com/v0/item/23712676.json?print=pretty`,
-    //   );
- 
-    //   setComment(result.data);
-    //   setIsLoading(false);
-    // };
- 
-    // fetchData();
-
   }, [])
 
   return(
-  <div>
-    {/* chii 19 hours ago | parent | favorite | on: Hundreds arrested as crime chat network cracked
-    the difference between blue collar crime and white collar crime is one uses guns, while the other uses pens. */}
+  <div className={classnames(styles.commentblock, props.className)}>
     {isLoading ? (
         <div>Loading ...</div>
-      ) : ( <div> {comment ? <div>
+      ) : ( <div> {comment ? <div className={classnames(styles.commentblock, props.className)}>
       <Text textcolor="gray">{comment.by} | {timeConversion(comment.time)} | <a href={`https://hacker-news.firebaseio.com/v0/item/${comment.parent}.json?print=pretty`}>Parent</a> | favorite | on: Hundreds arrested as crime chat network cracked</Text>
       <Text>{comment.text}</Text>
       <textarea id="w3review" name="w3review" rows="6" cols="60" />

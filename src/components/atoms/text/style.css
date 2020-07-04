@@ -1,0 +1,50 @@
+@import '../../_settings/_variables.css';
+
+/* Size */
+.h1 {
+  font-size: 26px;
+}
+
+.h2 {
+  font-size: 24px;
+}
+
+.h3 {
+  font-size: 22px;
+  color: #ccc;
+  margin-top: 2px;
+}
+
+.h4 {
+  font-size: 20px;
+}
+
+.h5 {
+  font-size: 18px;
+}
+
+.h6 {
+  font-size: 16px;
+}
+
+.p {
+  font-size: 14px;
+}
+
+.span {
+  font-size: 12px;
+}
+
+
+/* text color */
+.gray {
+  color: gray;
+}
+
+.white {
+  color: white;
+}
+
+.black {
+  color: black;
+}

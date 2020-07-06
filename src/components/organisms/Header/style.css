@@ -1,0 +1,25 @@
+.header-wrapper {
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: auto 1fr;
+  background-color: #f60;
+}
+.header-wrapper a {
+  text-decoration: none;
+  color: #000;
+}
+.header-wrapper__logo a {
+  display: flex;
+  align-items: center;
+}
+.header-wrapper__logo a img {
+  border: 1px white solid;
+}
+.header-wrapper__logo a span {
+  font-weight: 800;
+  margin-left: 4px;
+  margin-right: 10px;
+}
+.header-wrapper__active {
+  color: #fff !important;
+}

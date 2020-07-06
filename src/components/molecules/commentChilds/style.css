@@ -7,3 +7,7 @@
 li {
   list-style-type: none;
 }
+
+.content {
+  padding-bottom: 10px;
+}

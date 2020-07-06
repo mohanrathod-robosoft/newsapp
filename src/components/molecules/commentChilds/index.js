@@ -37,8 +37,8 @@ const CommentChilds = (props) => {
       {isLoading ? (
         <div>Loading ...</div>
       ) : ( <div> {comment ? <div style={{paddingLeft: `${level * 50}px`}}>
-      <Text textcolor="gray">{comment.by} | {timeConversion(comment.time)} </Text>
-      <Text>{comment.text}</Text>
+        <Text textcolor="gray" label={`${comment.by} | ${timeConversion(comment.time)}`} />
+      <div className="content" dangerouslySetInnerHTML={{ __html: comment.text }} />
       <Text textcolor="gray"> reply </Text>
       </div> : null} </div> )}
       {hasError ? <p>{JSON.stringify(hasError)}</p> : null}

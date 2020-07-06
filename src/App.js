@@ -1,16 +1,14 @@
 import React from 'react';
 import './App.css';
-import Comment from "./components/organisms/comment"
+
+import Routes from "./routes";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
     return (
-        <>
-            {
-              <div>
-                <Comment></Comment>
-              </div>
-            }
-        </>
+        <BrowserRouter>
+          <Routes />
+        </BrowserRouter>
     )
 }
 

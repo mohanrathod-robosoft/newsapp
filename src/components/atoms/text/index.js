@@ -26,19 +26,29 @@ export const TextBoldness = {
   BOLD: 'bold',
 }
 
+export const TextElement = {
+  element: 'text'
+}
+
 const Typography = (props) => {
-  const { children, textsize, textcolor, textboldness, className } = props
+  const { children, textsize, textcolor, textboldness, element, label, className } = props
   const classProps = classnames(
     [textsize],
     textcolor,
     textboldness,
     className
   )
-  return (
-    <p className={classProps}>
-      {children}
-    </p>
-  )
+
+  
+  if (element === "text") {
+    return <>{label}</>;
+  }
+
+  if (element === "span") {
+    return <span className={classProps}>{label}</span>;
+  }
+
+  return <div className={classProps}>{label}</div>;
 }
 
 Typography.defaultProps = {

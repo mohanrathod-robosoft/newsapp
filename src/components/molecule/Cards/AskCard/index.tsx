@@ -6,7 +6,7 @@ import classes from "../style.scss";
 import Text from "../../../atoms/Text";
 import NavigationLink from "../../NavigationLink";
 import { getDomainName, miliSecToTime } from "../../../../utils";
-import { NewsResponse } from "../../../../interfaces";
+import { InitResponse } from "../../../../interfaces";
 
 interface Props {
   subUrl: string;
@@ -14,15 +14,15 @@ interface Props {
   isShow?: boolean;
 }
 
-const AskCard = ({ subUrl, index, isShow = false }: Props) => {
-  const [news, setNews] = useState<NewsResponse>();
+const AskCard = ({ subUrl, index }: Props) => {
+  const [ask, setAsk] = useState<InitResponse>();
   const [cardLoader, setCardLoader] = useState<boolean>(true);
 
   useEffect(() => {
     const subscription = defer(() =>
       fetch(subUrl).then((res) => res.json())
-    ).subscribe((resp: NewsResponse) => {
-      setNews(resp);
+    ).subscribe((resp: InitResponse) => {
+      setAsk(resp);
       setCardLoader(false);
     });
 
@@ -35,36 +35,25 @@ const AskCard = ({ subUrl, index, isShow = false }: Props) => {
     return <></>;
   }
 
-  return news ? (
+  return ask ? (
     <>
       <tr>
         <td align="right">
           {index && <Text label={`${index}.`} fontColor="gray" />}
         </td>
         <td>
-          {isShow ? (
-            <a
-              rel="noopener noreferrer"
-              className={classes.storylink}
-              target="_blank"
-              href={news.url || ""}
-            >
-              <Text element="text" label={news.title} />
-            </a>
-          ) : (
-            <NavigationLink
-              link={`item?id=${news.id}`}
-              className={classes.storylink}
-            >
-              <Text element="text" label={news.title} />
-            </NavigationLink>
-          )}
-          {news.url && (
+          <NavigationLink
+            link={`item?id=${ask.id}`}
+            className={classes.storylink}
+          >
+            <Text element="text" label={ask.title} />
+          </NavigationLink>
+          {ask.url && (
             <Text
               fontColor="gray"
               fontSize="sm"
               element="span"
-              label={` (${getDomainName(news.url)})`}
+              label={` (${getDomainName(ask.url)})`}
             />
           )}
         </td>
@@ -76,20 +65,20 @@ const AskCard = ({ subUrl, index, isShow = false }: Props) => {
             element="span"
             fontSize="xs"
             fontColor="gray"
-            label={`${news.score} Points by ${news.by}`}
+            label={`${ask.score} Points by ${ask.by}`}
           />
           <Text
             element="span"
             fontSize="xs"
             fontColor="gray"
-            label={` ${miliSecToTime(news.time || 0)}`}
+            label={` ${miliSecToTime(ask.time || 0)}`}
           />
           <NavigationLink
             element="span"
             fontSize="xs"
             fontColor="gray"
-            link={`/item?id=${news.id}`}
-            label={` | ${news.kids ? news.kids.length : 0} comments`}
+            link={`/item?id=${ask.id}`}
+            label={` | ${ask.kids ? ask.kids.length : 0} comments`}
           />
         </td>
       </tr>

@@ -1,7 +1,7 @@
 import React from "react";
 
 import CommentCard from "../../molecule/Cards/CommentCard";
-import { NewsResponse } from "../../../interfaces";
+import { InitResponse } from "../../../interfaces";
 
 import "./style.scss";
 import NewsCard from "../../molecule/Cards/NewsCard";
@@ -9,7 +9,7 @@ import Button from "../../atoms/Button";
 
 interface Props {
   subUrl: string;
-  commentsIdObj: NewsResponse;
+  commentsIdObj: InitResponse;
 }
 
 const CommentsContainer = ({ commentsIdObj, subUrl }: Props) => {

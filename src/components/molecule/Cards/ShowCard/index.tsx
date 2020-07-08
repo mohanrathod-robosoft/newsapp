@@ -14,15 +14,15 @@ interface Props {
   isShow?: boolean;
 }
 
-const JobsCard = ({ subUrl, index }: Props) => {
-  const [news, setNews] = useState<InitResponse>();
+const ShowCard = ({ subUrl, index }: Props) => {
+  const [show, setShow] = useState<InitResponse>();
   const [cardLoader, setCardLoader] = useState<boolean>(true);
 
   useEffect(() => {
     const subscription = defer(() =>
       fetch(subUrl).then((res) => res.json())
     ).subscribe((resp: InitResponse) => {
-      setNews(resp);
+      setShow(resp);
       setCardLoader(false);
     });
 
@@ -35,36 +35,52 @@ const JobsCard = ({ subUrl, index }: Props) => {
     return <></>;
   }
 
-  return news ? (
+  return show ? (
     <>
       <tr>
+        <td align="right">
+          {index && <Text label={`${index}.`} fontColor="gray" />}
+        </td>
         <td>
           <a
             rel="noopener noreferrer"
             className={classes.storylink}
             target="_blank"
-            href={news.url || ""}
+            href={show.url || ""}
           >
-            <Text element="text" label={news.title} />
+            <Text element="text" label={show.title} />
           </a>
-
-          {news.url && (
+          {show.url && (
             <Text
               fontColor="gray"
               fontSize="sm"
               element="span"
-              label={` (${getDomainName(news.url)})`}
+              label={` (${getDomainName(show.url)})`}
             />
           )}
         </td>
       </tr>
       <tr>
+        <td></td>
         <td>
           <Text
             element="span"
             fontSize="xs"
             fontColor="gray"
-            label={` ${miliSecToTime(news.time || 0)}`}
+            label={`${show.score} Points by ${show.by}`}
+          />
+          <Text
+            element="span"
+            fontSize="xs"
+            fontColor="gray"
+            label={` ${miliSecToTime(show.time || 0)}`}
+          />
+          <NavigationLink
+            element="span"
+            fontSize="xs"
+            fontColor="gray"
+            link={`/item?id=${show.id}`}
+            label={` | ${show.kids ? show.kids.length : 0} comments`}
           />
         </td>
       </tr>
@@ -75,4 +91,4 @@ const JobsCard = ({ subUrl, index }: Props) => {
   );
 };
 
-export default JobsCard;
+export default ShowCard;

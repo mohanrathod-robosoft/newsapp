@@ -1,10 +1,7 @@
 import React from "react";
 
-import NewsCard from "../../molecule/Cards/NewsCard";
 import NavigationLink from "../../molecule/NavigationLink";
-import NewestCard from "../../molecule/Cards/NewestCard";
-import AskCard from "../../molecule/Cards/AskCard";
-import JobsCard from "../../molecule/Cards/JobsCard";
+import * as cardsFactory from './cardsFactory';
 
 interface Props {
   newsArray: number[];
@@ -26,52 +23,9 @@ const CardsContainer = ({
   let renderNews =
     Array.isArray(newsArray) &&
     newsArray.map((item, index) => {
-      if (type === "news") {
         return (
-          <NewsCard
-            index={indexStart + (index + 1)}
-            key={index}
-            subUrl={`${subUrl}/${item}.json`}
-          />
-        );
-      }
-      if (type === "newest") {
-        return (
-          <NewestCard
-            index={indexStart + (index + 1)}
-            key={index}
-            subUrl={`${subUrl}/${item}.json`}
-          />
-        );
-      }
-      if (type === "ask") {
-        return (
-          <AskCard
-            index={indexStart + (index + 1)}
-            key={index}
-            subUrl={`${subUrl}/${item}.json`}
-          />
-        );
-      }
-      if (type === "show") {
-        return (
-          <AskCard
-            index={indexStart + (index + 1)}
-            key={index}
-            subUrl={`${subUrl}/${item}.json`}
-            isShow={true}
-          />
-        );
-      }
-      if (type === "jobs") {
-        return (
-          <JobsCard
-            index={indexStart + (index + 1)}
-            key={index}
-            subUrl={`${subUrl}/${item}.json`}
-          />
-        );
-      }
+          cardsFactory.createCard(indexStart + (index + 1), index, `${subUrl}/${item}.json`, type).renderData()
+        )
     });
 
   return (

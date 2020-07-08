@@ -1,4 +1,4 @@
-export interface NewsResponse {
+export interface InitResponse {
   title: string;
   url: string;
   score: number;

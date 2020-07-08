@@ -6,7 +6,7 @@ import { defer } from "rxjs";
 import { useLocation } from "react-router-dom";
 
 import CommentsContainer from "../components/organisms/CommentsContainer";
-import { NewsResponse } from "../interfaces";
+import { InitResponse } from "../interfaces";
 import { subURL, getComments } from "../requests";
 
 interface ParamTypes {
@@ -20,7 +20,7 @@ const Comments = () => {
   const mainId = Number(new URLSearchParams(location.search).get("id"));
 
   const [pageLoader, setPageLoader] = useState<boolean>(true);
-  const [commentsIdObj, setCommentsIdArray] = useState<NewsResponse>();
+  const [commentsIdObj, setCommentsIdArray] = useState<InitResponse>();
 
   useEffect(() => {
     const subscription = defer(() =>

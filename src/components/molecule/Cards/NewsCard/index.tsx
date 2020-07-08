@@ -8,7 +8,7 @@ import { getDomainName, miliSecToTime } from "../../../../utils";
 
 import Text from "../../../atoms/Text";
 import NavigationLink from "../../NavigationLink";
-import { NewsResponse } from "../../../../interfaces";
+import { InitResponse } from "../../../../interfaces";
 
 interface Props {
   subUrl: string;
@@ -16,13 +16,13 @@ interface Props {
 }
 
 const NewsCard = ({ subUrl, index }: Props) => {
-  const [news, setNews] = useState<NewsResponse>();
+  const [news, setNews] = useState<InitResponse>();
   const [cardLoader, setCardLoader] = useState<boolean>(true);
 
   useEffect(() => {
     const subscription = defer(() =>
       fetch(subUrl).then((res) => res.json())
-    ).subscribe((resp: NewsResponse) => {
+    ).subscribe((resp: InitResponse) => {
       setNews(resp);
       setCardLoader(false);
     });

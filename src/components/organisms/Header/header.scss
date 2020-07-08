@@ -1,0 +1,31 @@
+.header-wrapper {
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: auto 1fr;
+  background-color: #ff6600;
+
+  a {
+    text-decoration: none;
+    color: #000;
+  }
+
+  &__logo {
+    a {
+      display: flex;
+      align-items: center;
+
+      img {
+        border: 1px white solid;
+      }
+      span {
+        font-weight: 800;
+        margin-left: 4px;
+        margin-right: 10px;
+      }
+    }
+  }
+
+  &__active {
+    color: #fff !important;
+  }
+}

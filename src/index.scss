@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Verdana, Geneva, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  padding: 8px;
+  width: 85%;
+  margin: 0 auto;
+  font-size: 10pt;
+
+  @media only screen and (max-width: 750px) and (min-width: 300px) {
+    padding: 0;
+    width: 100%;
+  }
+
+  #root {
+    background-color: #f6f6ef;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+}
